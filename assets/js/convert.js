@@ -18,20 +18,17 @@ $(document).ready(function(){
     });
 
     function render_template() {
-        var is_checked_showwhitespaces = $('input[name="showwhitespaces"]').is(':checked') ? 1:0;
 	$.ajax({
         url: "/validate-jinja/",
         type: "POST",
         data: JSON.stringify({"template": $('#template').val(),
                               "values": $('#values').val(),
-                              "showwhitespaces": is_checked_showwhitespaces,
                               "csrf_token": $('input[name="csrf_token"]').val(),
                              }),
         contentType: "application/json",
         success: function(response) {
-	    response = response.replace(/•/g, '<span class="whitespace">•</span>');
             // Display the answer
-            $('#render').html(response);
+            $('#iframe').contents().find("html").html(response);
             }
 
         });

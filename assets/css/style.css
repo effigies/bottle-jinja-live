@@ -19,3 +19,8 @@ span.whitespace {
 label {
     font-weight: normal;
 }
+
+iframe#iframe {
+    width: 100%;
+    height: 500px;
+}

@@ -105,12 +105,7 @@ def convert():
     except (ValueError, TypeError) as e:
         return "Error in your values input filed: {0}".format(e)
 
-    show_white_spaces = request.json['showwhitespaces']
-    if int(show_white_spaces):
-        # Replace whitespaces with a visible character (will be grayed with
-        # javascript)
-        rendered_jinja2_tpl = rendered_jinja2_tpl.replace(' ', u'•')
-    return escape(rendered_jinja2_tpl).replace('\n', '<br />')
+    return rendered_jinja2_tpl
 
 
 if __name__ == "__main__":
@@ -121,4 +116,4 @@ if __name__ == "__main__":
         print(filepath)
         yield bottle.static_file(filepath, root='./assets/')
 
-    bottle.run(app, host='0.0.0.0', debug=True, reloader=True, port=8080)
+    bottle.run(app, host='localhost', debug=True, reloader=True, port=8080)
